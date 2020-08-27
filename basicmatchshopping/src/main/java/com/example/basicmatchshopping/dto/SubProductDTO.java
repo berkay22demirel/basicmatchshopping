@@ -4,6 +4,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.example.basicmatchshopping.constant.AmountType;
+import com.example.basicmatchshopping.constant.Source;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +20,10 @@ public class SubProductDTO {
 
 	private int id;
 	private ProductDTO productDTO;
-	@Min(value = 1)
-	private int source;
+	private Source source;
 	@Min(value = 0)
 	private double price;
-	@Min(value = 1)
-	private int amountType;
+	private AmountType amountType;
 	@Min(value = 0)
 	private double amount;
 	@NotEmpty
