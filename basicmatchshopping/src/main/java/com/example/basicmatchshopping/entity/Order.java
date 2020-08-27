@@ -2,22 +2,27 @@ package com.example.basicmatchshopping.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "order")
 public class Order {
 
 	@Id
@@ -25,13 +30,15 @@ public class Order {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private long id;
 
-	@Column(name = "username", nullable = false, updatable = false)
-	private int user_id;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+	private User user;
 
-	@Column(name = "shopping_cart_id", nullable = false)
-	private int shopping_cart_id;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "shopping_cart_id", referencedColumnName = "id", nullable = false)
+	private ShoppingCart shoppingCart;
 
 	@Column(name = "order_date", nullable = false)
-	private Date order_date;
+	private Date orderDate;
 
 }
