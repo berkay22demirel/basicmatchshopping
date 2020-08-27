@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,6 +28,10 @@ public class ShoppingCartItem {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, updatable = false)
 	private long id;
+
+	@ManyToOne
+	@JoinColumn(name = "shopping_cart_id", nullable = false)
+	private ShoppingCart shoppingCart;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sub_product_id", referencedColumnName = "id", nullable = false)
