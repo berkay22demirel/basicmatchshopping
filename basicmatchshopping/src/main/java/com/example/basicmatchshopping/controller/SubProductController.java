@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.basicmatchshopping.dto.ProductDTO;
-import com.example.basicmatchshopping.service.ProductService;
+import com.example.basicmatchshopping.dto.SubProductDTO;
+import com.example.basicmatchshopping.service.SubProductService;
 
 @RestController
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/subproduct")
+public class SubProductController {
 
 	@Autowired
-	private ProductService productService;
+	private SubProductService subProductService;
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Object> create(@RequestBody ProductDTO product) throws Exception {
-		ProductDTO createdProduct = productService.create(product);
-		return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+	public ResponseEntity<Object> create(@RequestBody SubProductDTO subProduct) throws Exception {
+		SubProductDTO createdSubProduct = subProductService.create(subProduct);
+		return new ResponseEntity<>(createdSubProduct, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody ProductDTO product) throws Exception {
-		ProductDTO updatedProduct = productService.update(product);
-		return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+	public ResponseEntity<Object> update(@RequestBody SubProductDTO subProduct) throws Exception {
+		SubProductDTO updatedSubProduct = subProductService.update(subProduct);
+		return new ResponseEntity<>(updatedSubProduct, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable("id") int id) throws Exception {
-		productService.delete(id);
-		return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
+		subProductService.delete(id);
+		return new ResponseEntity<>("SubProduct is deleted successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getAll")
 	public ResponseEntity<Object> getAll() throws Exception {
-		return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
+		return new ResponseEntity<>(subProductService.getAll(), HttpStatus.OK);
 	}
 
 }

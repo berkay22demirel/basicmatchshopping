@@ -9,10 +9,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
+public class SubProductDTO {
 
 	private int id;
-	private String name;
-	private String imagePath;
-
+	private ProductDTO productDTO;
+	private int source;
+	private double price;
+	private int amountType;
+	private double amount;
+	private String sourceLink;
 }

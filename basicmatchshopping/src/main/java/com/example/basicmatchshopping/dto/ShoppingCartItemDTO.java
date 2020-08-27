@@ -9,10 +9,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CategoryDTO {
+public class ShoppingCartItemDTO {
 
 	private int id;
-	private String name;
-	private String imagePath;
+	private ShoppingCartDTO shoppingCartDTO;
+	private SubProductDTO subProductDTO;
+	private int quantity;
 
 }

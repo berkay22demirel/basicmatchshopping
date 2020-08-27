@@ -25,7 +25,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, updatable = false)
-	private long id;
+	private int id;
 
 	@NotEmpty
 	@Size(min = 6, max = 15)

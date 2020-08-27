@@ -29,7 +29,7 @@ public class ShoppingCart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, updatable = false)
-	private long id;
+	private int id;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)

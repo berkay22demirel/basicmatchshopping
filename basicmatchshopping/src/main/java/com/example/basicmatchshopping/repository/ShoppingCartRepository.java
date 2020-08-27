@@ -1,10 +1,11 @@
 package com.example.basicmatchshopping.repository;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.basicmatchshopping.entity.ShoppingCart;
+
 @Repository
-public interface ShoppingCartRepository extends CrudRepository<Item, Long> {
+public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Integer> {
 
 }
