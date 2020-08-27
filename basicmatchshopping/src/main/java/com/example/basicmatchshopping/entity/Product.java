@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +30,8 @@ public class Product {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private int id;
 
+	@NotEmpty
+	@Size(min = 6, max = 50)
 	@Column(name = "name", nullable = false, unique = true)
 	private int name;
 
@@ -35,6 +39,7 @@ public class Product {
 	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
 	private Category category;
 
+	@Size(max = 100)
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
 

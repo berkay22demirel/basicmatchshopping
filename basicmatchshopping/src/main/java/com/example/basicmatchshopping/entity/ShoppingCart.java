@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class ShoppingCart {
 	@OneToMany(mappedBy = "shopping_cart_item")
 	private List<ShoppingCartItem> shoppingCartItems;
 
+	@Min(value = 0)
 	@Column(name = "total_amount", nullable = false)
 	private double totalAmount;
 

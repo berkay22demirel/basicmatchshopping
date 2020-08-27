@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,18 +35,24 @@ public class SubProduct {
 	@JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)
 	private Product product;
 
+	@Min(value = 1)
 	@Column(name = "source", nullable = false)
 	private int source;
 
+	@Min(value = 0)
 	@Column(name = "price", nullable = false)
 	private double price;
 
+	@Min(value = 1)
 	@Column(name = "amount_type", nullable = false)
 	private int amountType;
 
+	@Min(value = 0)
 	@Column(name = "amount", nullable = false)
 	private double amount;
 
+	@NotEmpty
+	@Size(min = 6, max = 400)
 	@Column(name = "source_link", nullable = false)
 	private String sourceLink;
 }

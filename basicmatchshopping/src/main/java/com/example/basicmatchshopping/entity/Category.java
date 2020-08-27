@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,9 +27,12 @@ public class Category {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private int id;
 
+	@NotEmpty
+	@Size(min = 6, max = 25)
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
 
+	@Size(max = 100)
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
 

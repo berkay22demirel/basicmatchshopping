@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,7 @@ public class ShoppingCartItem {
 	@JoinColumn(name = "sub_product_id", referencedColumnName = "id", nullable = false)
 	private SubProduct subProduct;
 
+	@Min(value = 1)
 	@Column(name = "quantity", nullable = false)
 	private int quantity;
 
