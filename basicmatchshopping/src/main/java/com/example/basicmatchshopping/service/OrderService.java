@@ -6,9 +6,9 @@ import com.example.basicmatchshopping.dto.OrderDTO;
 
 public interface OrderService {
 
-	public OrderDTO create(OrderDTO orderDTO);
+	public int create(OrderDTO orderDTO);
 
-	public OrderDTO update(OrderDTO orderDTO);
+	public void update(OrderDTO orderDTO);
 
 	public void delete(int id);
 

@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.basicmatchshopping.dto.OrderDTO;
-import com.example.basicmatchshopping.service.OrderService;
+import com.example.basicmatchshopping.dto.ShoppingCartItemDTO;
+import com.example.basicmatchshopping.service.ShoppingCartItemService;
 
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/shoppingcartitem")
+public class ShoppingCartItemController {
 
 	@Autowired
-	private OrderService orderService;
+	private ShoppingCartItemService shoppingCartItemService;
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Object> create(@RequestBody OrderDTO order) throws Exception {
-		int id = orderService.create(order);
+	public ResponseEntity<Object> create(@RequestBody ShoppingCartItemDTO shoppingCartItem) throws Exception {
+		int id = shoppingCartItemService.create(shoppingCartItem);
 		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody OrderDTO order) throws Exception {
-		orderService.update(order);
-		return new ResponseEntity<>("Order is updated successsfully", HttpStatus.OK);
+	public ResponseEntity<Object> update(@RequestBody ShoppingCartItemDTO shoppingCartItem) throws Exception {
+		shoppingCartItemService.update(shoppingCartItem);
+		return new ResponseEntity<>("ShoppingCartItem is updated successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable("id") int id) throws Exception {
-		orderService.delete(id);
-		return new ResponseEntity<>("Order is deleted successsfully", HttpStatus.OK);
+		shoppingCartItemService.delete(id);
+		return new ResponseEntity<>("ShoppingCartItem is deleted successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getAll")
 	public ResponseEntity<Object> getAll() throws Exception {
-		return new ResponseEntity<>(orderService.getAll(), HttpStatus.OK);
+		return new ResponseEntity<>(shoppingCartItemService.getAll(), HttpStatus.OK);
 	}
 
 }

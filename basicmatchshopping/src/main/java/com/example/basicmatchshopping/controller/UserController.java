@@ -21,14 +21,14 @@ public class UserController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Object> create(@RequestBody UserDTO user) throws Exception {
-		UserDTO createdUser = userService.create(user);
-		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+		int id = userService.create(user);
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@RequestBody UserDTO user) throws Exception {
-		UserDTO updatedUser = userService.update(user);
-		return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		userService.update(user);
+		return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

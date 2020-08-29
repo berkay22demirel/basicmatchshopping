@@ -3,6 +3,7 @@ package com.example.basicmatchshopping.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,12 +31,12 @@ public class ShoppingCartItem {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	@JoinColumn(name = "shopping_cart_id", nullable = false)
 	private ShoppingCart shoppingCart;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "sub_product_id", referencedColumnName = "id", nullable = false)
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "sub_product_id", referencedColumnName = "ID", nullable = false)
 	private SubProduct subProduct;
 
 	@Min(value = 1)

@@ -3,6 +3,7 @@ package com.example.basicmatchshopping.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,10 +34,10 @@ public class Product {
 	@NotEmpty
 	@Size(min = 6, max = 50)
 	@Column(name = "name", nullable = false, unique = true)
-	private int name;
+	private String name;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "category_id", referencedColumnName = "ID", nullable = false)
 	private Category category;
 
 	@Size(max = 100)

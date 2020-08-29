@@ -6,9 +6,9 @@ import com.example.basicmatchshopping.dto.SubProductDTO;
 
 public interface SubProductService {
 
-	public SubProductDTO create(SubProductDTO subProductDTO);
+	public int create(SubProductDTO subProductDTO);
 
-	public SubProductDTO update(SubProductDTO subProductDTO);
+	public void update(SubProductDTO subProductDTO);
 
 	public void delete(int id);
 

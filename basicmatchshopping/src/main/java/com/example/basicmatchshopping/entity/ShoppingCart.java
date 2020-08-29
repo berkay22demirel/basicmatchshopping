@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,14 +32,13 @@ public class ShoppingCart {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private int id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", referencedColumnName = "ID", nullable = false)
 	private User user;
 
-	@OneToMany(mappedBy = "shopping_cart_item")
+	@OneToMany(mappedBy = "shoppingCart")
 	private List<ShoppingCartItem> shoppingCartItems;
 
-	@Min(value = 0)
 	@Column(name = "total_amount", nullable = false)
 	private double totalAmount;
 

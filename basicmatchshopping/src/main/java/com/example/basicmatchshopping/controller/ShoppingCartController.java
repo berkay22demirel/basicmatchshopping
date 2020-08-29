@@ -21,14 +21,14 @@ public class ShoppingCartController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Object> create(@RequestBody ShoppingCartDTO shoppingCart) throws Exception {
-		ShoppingCartDTO createdShoppingCart = shoppingCartService.create(shoppingCart);
-		return new ResponseEntity<>(createdShoppingCart, HttpStatus.CREATED);
+		int id = shoppingCartService.create(shoppingCart);
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@RequestBody ShoppingCartDTO shoppingCart) throws Exception {
-		ShoppingCartDTO updatedShoppingCart = shoppingCartService.update(shoppingCart);
-		return new ResponseEntity<>(updatedShoppingCart, HttpStatus.OK);
+		shoppingCartService.update(shoppingCart);
+		return new ResponseEntity<>("ShoppingCart is updated successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

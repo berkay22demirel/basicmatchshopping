@@ -17,7 +17,7 @@ public class ProductDTO {
 	private int id;
 	@NotEmpty
 	@Size(min = 6, max = 50)
-	private int name;
+	private String name;
 	private CategoryDTO categoryDTO;
 	@Size(max = 100)
 	private String imagePath;

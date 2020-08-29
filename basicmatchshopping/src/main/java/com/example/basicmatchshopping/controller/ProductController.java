@@ -21,14 +21,14 @@ public class ProductController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Object> create(@RequestBody ProductDTO product) throws Exception {
-		ProductDTO createdProduct = productService.create(product);
-		return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+		int id = productService.create(product);
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@RequestBody ProductDTO product) throws Exception {
-		ProductDTO updatedProduct = productService.update(product);
-		return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+		productService.update(product);
+		return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

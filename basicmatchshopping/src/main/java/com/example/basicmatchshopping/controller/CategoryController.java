@@ -21,14 +21,14 @@ public class CategoryController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Object> create(@RequestBody CategoryDTO category) throws Exception {
-		CategoryDTO createdCategory = categoryService.create(category);
-		return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
+		int id = categoryService.create(category);
+		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public ResponseEntity<Object> update(@RequestBody CategoryDTO category) throws Exception {
-		CategoryDTO updatedCategory = categoryService.update(category);
-		return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
+		categoryService.update(category);
+		return new ResponseEntity<>("Category is updated successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)

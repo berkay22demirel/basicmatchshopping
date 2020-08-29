@@ -6,9 +6,9 @@ import com.example.basicmatchshopping.dto.CategoryDTO;
 
 public interface CategoryService {
 
-	public CategoryDTO create(CategoryDTO categoryDTO);
+	public int create(CategoryDTO categoryDTO);
 
-	public CategoryDTO update(CategoryDTO categoryDTO);
+	public void update(CategoryDTO categoryDTO);
 
 	public void delete(int id);
 

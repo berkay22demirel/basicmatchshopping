@@ -6,9 +6,9 @@ import com.example.basicmatchshopping.dto.ShoppingCartDTO;
 
 public interface ShoppingCartService {
 
-	public ShoppingCartDTO create(ShoppingCartDTO shoppingCartDTO);
+	public int create(ShoppingCartDTO shoppingCartDTO);
 
-	public ShoppingCartDTO update(ShoppingCartDTO shoppingCartDTO);
+	public void update(ShoppingCartDTO shoppingCartDTO);
 
 	public void delete(int id);
 
