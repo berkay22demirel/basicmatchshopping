@@ -58,7 +58,7 @@ public class SubProduct {
 	private double amount;
 
 	@NotEmpty
-	@Size(min = 6, max = 400)
+	@Size(min = 6, max = 1000)
 	@Column(name = "source_link", nullable = false)
 	private String sourceLink;
 }

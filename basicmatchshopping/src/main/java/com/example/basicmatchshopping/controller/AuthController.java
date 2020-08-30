@@ -1,16 +1,19 @@
 package com.example.basicmatchshopping.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.basicmatchshopping.dto.AuthRequest;
+import com.example.basicmatchshopping.service.AmazonService;
 import com.example.basicmatchshopping.service.JwtService;
 import com.example.basicmatchshopping.service.UserServiceImpl;
 
@@ -27,7 +30,10 @@ public class AuthController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 
-	@PostMapping("/login")
+	@Autowired
+	private AmazonService amazonService;
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String creteToken(@RequestBody AuthRequest authRequest) throws Exception {
 		try {
 			authenticationManager.authenticate(
@@ -39,6 +45,12 @@ public class AuthController {
 		final String jwt = jwtService.generateToken(userDetails);
 
 		return jwt;
+	}
+
+	@RequestMapping(value = "/amazon", method = RequestMethod.GET)
+	public ResponseEntity<Object> amazon() throws Exception {
+		amazonService.fillProduct();
+		return new ResponseEntity<>("Successsfull", HttpStatus.OK);
 	}
 
 }

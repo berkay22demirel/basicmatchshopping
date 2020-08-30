@@ -16,9 +16,9 @@ public class CategoryDTO {
 
 	private int id;
 	@NotEmpty
-	@Size(min = 6, max = 25)
+	@Size(min = 6, max = 50)
 	private String name;
-	@Size(max = 100)
+	@Size(max = 500)
 	private String imagePath;
 
 }

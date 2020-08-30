@@ -32,7 +32,7 @@ public class Product {
 	private int id;
 
 	@NotEmpty
-	@Size(min = 6, max = 50)
+	@Size(min = 6, max = 500)
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
 
@@ -40,7 +40,7 @@ public class Product {
 	@JoinColumn(name = "category_id", referencedColumnName = "ID", nullable = false)
 	private Category category;
 
-	@Size(max = 100)
+	@Size(max = 1000)
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
 

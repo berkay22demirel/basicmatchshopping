@@ -28,11 +28,11 @@ public class Category {
 	private int id;
 
 	@NotEmpty
-	@Size(min = 6, max = 25)
+	@Size(min = 6, max = 50)
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
 
-	@Size(max = 100)
+	@Size(max = 500)
 	@Column(name = "image_path", nullable = false)
 	private String imagePath;
 
