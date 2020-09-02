@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.basicmatchshopping.dto.OrderDTO;
-import com.example.basicmatchshopping.dto.ShoppingCartDTO;
 import com.example.basicmatchshopping.entity.Order;
 import com.example.basicmatchshopping.repository.OrderRepository;
 import com.example.basicmatchshopping.util.MapperUtil;
@@ -22,9 +21,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int buy(OrderDTO orderDTO) {
 		Order order = MapperUtil.convertToOrder(orderDTO);
-		ShoppingCartDTO shoppingCartDTO = orderDTO.getShoppingCartDTO();
-		shoppingCartDTO.setActive(false);
-		shoppingCartService.update(shoppingCartDTO);
+		shoppingCartService.setPassiveToShoppingCart(orderDTO.getShoppingCartDTO().getId());
 		return orderRepository.save(order).getId();
 	}
 

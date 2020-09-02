@@ -8,6 +8,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.example.basicmatchshopping.dto.ShoppingCartDTO;
 import com.example.basicmatchshopping.entity.ShoppingCart;
+import com.example.basicmatchshopping.entity.ShoppingCartItem;
 import com.example.basicmatchshopping.entity.User;
 import com.example.basicmatchshopping.repository.ShoppingCartRepository;
 import com.example.basicmatchshopping.util.MapperUtil;
@@ -37,6 +38,27 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	@Override
 	public void update(ShoppingCartDTO shoppingCartDTO) {
 		ShoppingCart shoppingCart = MapperUtil.convertToShoppingCart(shoppingCartDTO);
+		shoppingCartRepository.save(shoppingCart);
+	}
+
+	@Override
+	public void recalculateTotalAmount(int id) {
+		double totalAmount = 0.0;
+		ShoppingCart shoppingCart = shoppingCartRepository.findById(id).get();
+		List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+		if (!CollectionUtils.isEmpty(shoppingCartItems)) {
+			for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
+				totalAmount += (shoppingCartItem.getSubProduct().getPrice() * shoppingCartItem.getQuantity());
+			}
+		}
+		shoppingCart.setTotalAmount(totalAmount);
+		shoppingCartRepository.save(shoppingCart);
+	}
+
+	@Override
+	public void setPassiveToShoppingCart(int id) {
+		ShoppingCart shoppingCart = shoppingCartRepository.findById(id).get();
+		shoppingCart.setActive(false);
 		shoppingCartRepository.save(shoppingCart);
 	}
 

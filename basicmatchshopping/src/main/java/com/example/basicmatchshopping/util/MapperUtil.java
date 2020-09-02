@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.util.CollectionUtils;
 
 import com.example.basicmatchshopping.dto.CategoryDTO;
 import com.example.basicmatchshopping.dto.OrderDTO;
@@ -135,13 +136,14 @@ public class MapperUtil {
 		return shoppingCartDTOs;
 	}
 
-	public static List<ShoppingCartItemDTO> convertToShoppingCartItemDTOs(
-			Iterable<ShoppingCartItem> shoppingCartItems) {
+	public static List<ShoppingCartItemDTO> convertToShoppingCartItemDTOs(List<ShoppingCartItem> shoppingCartItems) {
 		List<ShoppingCartItemDTO> shoppingCartItemDTOs = new ArrayList<>();
-		for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
-			ShoppingCartItemDTO shoppingCartItemDTO = convertToShoppingCartItemDTO(shoppingCartItem);
-			shoppingCartItemDTO.setSubProductDTO(convertToSubProductDTO(shoppingCartItem.getSubProduct()));
-			shoppingCartItemDTOs.add(shoppingCartItemDTO);
+		if (!CollectionUtils.isEmpty(shoppingCartItems)) {
+			for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
+				ShoppingCartItemDTO shoppingCartItemDTO = convertToShoppingCartItemDTO(shoppingCartItem);
+				shoppingCartItemDTO.setSubProductDTO(convertToSubProductDTO(shoppingCartItem.getSubProduct()));
+				shoppingCartItemDTOs.add(shoppingCartItemDTO);
+			}
 		}
 		return shoppingCartItemDTOs;
 	}

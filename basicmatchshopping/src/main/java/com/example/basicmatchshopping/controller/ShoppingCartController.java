@@ -16,7 +16,7 @@ public class ShoppingCartController {
 	@Autowired
 	private ShoppingCartService shoppingCartService;
 
-	@RequestMapping(value = "/getactivebyuserid/{id}}")
+	@RequestMapping(value = "/getactivebyuserid/{id}")
 	public ResponseEntity<Object> getActiveShoppingCartByUserId(@PathVariable("id") int id) throws Exception {
 		return new ResponseEntity<>(shoppingCartService.getActiveShoppingCartByUserId(id), HttpStatus.OK);
 	}
