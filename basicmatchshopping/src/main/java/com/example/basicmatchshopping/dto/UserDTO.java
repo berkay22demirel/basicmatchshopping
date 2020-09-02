@@ -32,4 +32,8 @@ public class UserDTO {
 	@Size(min = 3, max = 20)
 	private String surname;
 
+	@NotEmpty
+	@Size(min = 6, max = 50)
+	private String email;
+
 }

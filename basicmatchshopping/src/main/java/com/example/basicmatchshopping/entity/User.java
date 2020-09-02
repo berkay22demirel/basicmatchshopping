@@ -47,4 +47,9 @@ public class User {
 	@Column(name = "surname", nullable = false)
 	private String surname;
 
+	@NotEmpty
+	@Size(min = 6, max = 50)
+	@Column(name = "email", nullable = false)
+	private String email;
+
 }
