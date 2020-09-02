@@ -25,23 +25,6 @@ public class UserController {
 		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody UserDTO user) throws Exception {
-		userService.update(user);
-		return new ResponseEntity<>("User is updated successsfully", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> delete(@PathVariable("id") int id) throws Exception {
-		userService.delete(id);
-		return new ResponseEntity<>("User is deleted successsfully", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/getall")
-	public ResponseEntity<Object> getAll() throws Exception {
-		return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
-	}
-
 	@RequestMapping(value = "/get/{username}")
 	public ResponseEntity<Object> get(@PathVariable("username") String username) throws Exception {
 		return new ResponseEntity<>(userService.getByUsername(username), HttpStatus.OK);

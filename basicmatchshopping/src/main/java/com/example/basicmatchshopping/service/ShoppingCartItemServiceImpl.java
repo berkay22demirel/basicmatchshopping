@@ -1,7 +1,5 @@
 package com.example.basicmatchshopping.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
 	private ShoppingCartItemRepository shoppingCartItemRepository;
 
 	@Override
-	public int create(ShoppingCartItemDTO shoppingCartItemDTO) {
+	public int add(ShoppingCartItemDTO shoppingCartItemDTO) {
 		ShoppingCartItem shoppingCartItem = MapperUtil.convertToShoppingCartItem(shoppingCartItemDTO);
 		return shoppingCartItemRepository.save(shoppingCartItem).getId();
 	}
@@ -31,11 +29,6 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
 	@Override
 	public void delete(int id) {
 		shoppingCartItemRepository.deleteById(id);
-	}
-
-	@Override
-	public List<ShoppingCartItemDTO> getAll() {
-		return MapperUtil.convertToShoppingCartItemDTOs(shoppingCartItemRepository.findAll());
 	}
 
 }

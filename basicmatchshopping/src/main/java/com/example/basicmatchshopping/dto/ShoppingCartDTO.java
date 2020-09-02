@@ -17,5 +17,6 @@ public class ShoppingCartDTO {
 	private UserDTO userDTO;
 	private List<ShoppingCartItemDTO> shoppingCartItemDTOs;
 	private double totalAmount;
+	private boolean isActive;
 
 }

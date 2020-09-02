@@ -19,27 +19,10 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Object> create(@RequestBody OrderDTO order) throws Exception {
-		int id = orderService.create(order);
+	@RequestMapping(value = "/buy", method = RequestMethod.POST)
+	public ResponseEntity<Object> buy(@RequestBody OrderDTO order) throws Exception {
+		int id = orderService.buy(order);
 		return new ResponseEntity<>(id, HttpStatus.CREATED);
-	}
-
-	@RequestMapping(value = "/update", method = RequestMethod.PUT)
-	public ResponseEntity<Object> update(@RequestBody OrderDTO order) throws Exception {
-		orderService.update(order);
-		return new ResponseEntity<>("Order is updated successsfully", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Object> delete(@PathVariable("id") int id) throws Exception {
-		orderService.delete(id);
-		return new ResponseEntity<>("Order is deleted successsfully", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/getall")
-	public ResponseEntity<Object> getAll() throws Exception {
-		return new ResponseEntity<>(orderService.getAll(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/getallbyuserid/{id}")

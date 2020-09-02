@@ -21,20 +21,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 
 	@Override
-	public int create(ProductDTO productDTO) {
-		Product product = MapperUtil.convertToProduct(productDTO);
-		return productRepository.save(product).getId();
-	}
-
-	@Override
 	public int create(Product product) {
 		return productRepository.save(product).getId();
-	}
-
-	@Override
-	public void update(ProductDTO productDTO) {
-		Product product = MapperUtil.convertToProduct(productDTO);
-		productRepository.save(product);
 	}
 
 	@Override
@@ -45,11 +33,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void delete(int id) {
 		productRepository.deleteById(id);
-	}
-
-	@Override
-	public List<ProductDTO> getAll() {
-		return MapperUtil.convertToProductDTOs(productRepository.findAll());
 	}
 
 	@Override

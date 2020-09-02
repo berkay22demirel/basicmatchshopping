@@ -42,4 +42,7 @@ public class ShoppingCart {
 	@Column(name = "total_amount", nullable = false)
 	private double totalAmount;
 
+	@Column(name = "is_active", nullable = false)
+	private boolean isActive;
+
 }

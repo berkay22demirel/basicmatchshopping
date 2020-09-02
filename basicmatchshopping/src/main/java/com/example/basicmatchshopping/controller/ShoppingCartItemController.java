@@ -19,9 +19,9 @@ public class ShoppingCartItemController {
 	@Autowired
 	private ShoppingCartItemService shoppingCartItemService;
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ResponseEntity<Object> create(@RequestBody ShoppingCartItemDTO shoppingCartItem) throws Exception {
-		int id = shoppingCartItemService.create(shoppingCartItem);
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public ResponseEntity<Object> add(@RequestBody ShoppingCartItemDTO shoppingCartItem) throws Exception {
+		int id = shoppingCartItemService.add(shoppingCartItem);
 		return new ResponseEntity<>(id, HttpStatus.CREATED);
 	}
 
@@ -35,11 +35,6 @@ public class ShoppingCartItemController {
 	public ResponseEntity<Object> delete(@PathVariable("id") int id) throws Exception {
 		shoppingCartItemService.delete(id);
 		return new ResponseEntity<>("ShoppingCartItem is deleted successsfully", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/getall")
-	public ResponseEntity<Object> getAll() throws Exception {
-		return new ResponseEntity<>(shoppingCartItemService.getAll(), HttpStatus.OK);
 	}
 
 }
