@@ -61,4 +61,9 @@ public class ProductServiceImpl implements ProductService {
 		return products.iterator().next();
 	}
 
+	@Override
+	public List<ProductDTO> findProductsByCategoryId(int categoryId) {
+		return MapperUtil.convertToProductDTOs(productRepository.findProductsByCategoryId(categoryId));
+	}
+
 }

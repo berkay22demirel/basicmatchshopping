@@ -38,4 +38,9 @@ public class OrderServiceImpl implements OrderService {
 		return MapperUtil.convertToOrderDTOs(orderRepository.findAll());
 	}
 
+	@Override
+	public List<OrderDTO> getOrdersByUserId(int userId) {
+		return MapperUtil.convertToOrderDTOs(orderRepository.findOrdersByUserId(userId));
+	}
+
 }

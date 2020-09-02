@@ -55,4 +55,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 				new ArrayList<>());
 	}
 
+	@Override
+	public UserDTO getByUsername(String username) {
+		return MapperUtil.convertToUserDTO(userRepository.findByUserName(username).iterator().next());
+	}
+
 }

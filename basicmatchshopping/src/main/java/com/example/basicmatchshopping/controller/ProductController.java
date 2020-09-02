@@ -42,14 +42,9 @@ public class ProductController {
 		return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/get/{id}")
-	public ResponseEntity<Object> get(@PathVariable("id") int id) throws Exception {
-		return new ResponseEntity<>("FIXME", HttpStatus.OK);
-	}
-
 	@RequestMapping(value = "/getallbycategoryid/{id}")
 	public ResponseEntity<Object> getAllByCategoryId(@PathVariable("id") int id) throws Exception {
-		return new ResponseEntity<>("FIXME", HttpStatus.OK);
+		return new ResponseEntity<>(productService.findProductsByCategoryId(id), HttpStatus.OK);
 	}
 
 }

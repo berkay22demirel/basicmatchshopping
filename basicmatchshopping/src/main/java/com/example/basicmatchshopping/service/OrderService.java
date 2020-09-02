@@ -14,4 +14,6 @@ public interface OrderService {
 
 	public List<OrderDTO> getAll();
 
+	public List<OrderDTO> getOrdersByUserId(int userId);
+
 }

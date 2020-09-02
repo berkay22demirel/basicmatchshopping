@@ -42,9 +42,9 @@ public class UserController {
 		return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/get/{id}")
-	public ResponseEntity<Object> get(@PathVariable("id") int id) throws Exception {
-		return new ResponseEntity<>("FIXME", HttpStatus.OK);
+	@RequestMapping(value = "/get/{username}")
+	public ResponseEntity<Object> get(@PathVariable("username") String username) throws Exception {
+		return new ResponseEntity<>(userService.getByUsername(username), HttpStatus.OK);
 	}
 
 }

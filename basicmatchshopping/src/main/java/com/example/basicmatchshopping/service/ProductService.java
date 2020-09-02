@@ -22,4 +22,6 @@ public interface ProductService {
 	public List<ProductDTO> getAll();
 
 	public Product findByName(String name) throws NotFoundException;
+
+	public List<ProductDTO> findProductsByCategoryId(int categoryId);
 }

@@ -44,12 +44,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/getallbyuserid/{id}")
 	public ResponseEntity<Object> getAllByUserId(@PathVariable("id") int id) throws Exception {
-		return new ResponseEntity<>("FIXME", HttpStatus.OK);
-	}
-
-	@RequestMapping(value = "/get/{id}")
-	public ResponseEntity<Object> get(@PathVariable("id") int id) throws Exception {
-		return new ResponseEntity<>("FIXME", HttpStatus.OK);
+		return new ResponseEntity<>(orderService.getOrdersByUserId(id), HttpStatus.OK);
 	}
 
 }
