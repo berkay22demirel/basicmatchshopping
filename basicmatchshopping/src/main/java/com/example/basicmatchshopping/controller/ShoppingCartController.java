@@ -37,9 +37,14 @@ public class ShoppingCartController {
 		return new ResponseEntity<>("ShoppingCart is deleted successsfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAll")
+	@RequestMapping(value = "/getall")
 	public ResponseEntity<Object> getAll() throws Exception {
 		return new ResponseEntity<>(shoppingCartService.getAll(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/getactivebyuserid/{id}}")
+	public ResponseEntity<Object> getActiveShoppingCartByUserId(@PathVariable("id") int id) throws Exception {
+		return new ResponseEntity<>("FIXME", HttpStatus.OK);
 	}
 
 }

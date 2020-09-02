@@ -37,9 +37,14 @@ public class UserController {
 		return new ResponseEntity<>("User is deleted successsfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAll")
+	@RequestMapping(value = "/getall")
 	public ResponseEntity<Object> getAll() throws Exception {
 		return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/get/{id}")
+	public ResponseEntity<Object> get(@PathVariable("id") int id) throws Exception {
+		return new ResponseEntity<>("FIXME", HttpStatus.OK);
 	}
 
 }

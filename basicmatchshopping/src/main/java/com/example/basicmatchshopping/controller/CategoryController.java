@@ -37,7 +37,7 @@ public class CategoryController {
 		return new ResponseEntity<>("Category is deleted successsfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAll")
+	@RequestMapping(value = "/getall")
 	public ResponseEntity<Object> getAll() throws Exception {
 		return new ResponseEntity<>(categoryService.getAll(), HttpStatus.OK);
 	}

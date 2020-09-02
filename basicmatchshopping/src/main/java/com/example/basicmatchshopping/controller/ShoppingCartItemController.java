@@ -37,7 +37,7 @@ public class ShoppingCartItemController {
 		return new ResponseEntity<>("ShoppingCartItem is deleted successsfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAll")
+	@RequestMapping(value = "/getall")
 	public ResponseEntity<Object> getAll() throws Exception {
 		return new ResponseEntity<>(shoppingCartItemService.getAll(), HttpStatus.OK);
 	}

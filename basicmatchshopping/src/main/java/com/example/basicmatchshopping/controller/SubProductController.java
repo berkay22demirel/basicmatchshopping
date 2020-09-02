@@ -37,7 +37,7 @@ public class SubProductController {
 		return new ResponseEntity<>("SubProduct is deleted successsfully", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/getAll")
+	@RequestMapping(value = "/getall")
 	public ResponseEntity<Object> getAll() throws Exception {
 		return new ResponseEntity<>(subProductService.getAll(), HttpStatus.OK);
 	}
