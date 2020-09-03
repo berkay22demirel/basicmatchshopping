@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.basicmatchshopping.dto.AuthRequest;
+import com.example.basicmatchshopping.dto.TokenDTO;
 import com.example.basicmatchshopping.service.AmazonService;
 import com.example.basicmatchshopping.service.JwtService;
 import com.example.basicmatchshopping.service.UserServiceImpl;
@@ -34,7 +35,7 @@ public class AuthController {
 	private AmazonService amazonService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String creteToken(@RequestBody AuthRequest authRequest) throws Exception {
+	public ResponseEntity<Object> creteToken(@RequestBody AuthRequest authRequest) throws Exception {
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
@@ -43,8 +44,10 @@ public class AuthController {
 		}
 		final UserDetails userDetails = userServiceImpl.loadUserByUsername(authRequest.getUsername());
 		final String jwt = jwtService.generateToken(userDetails);
+		TokenDTO tokenDTO = new TokenDTO();
+		tokenDTO.setToken(jwt);
 
-		return jwt;
+		return new ResponseEntity<>(tokenDTO, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/amazon", method = RequestMethod.GET)

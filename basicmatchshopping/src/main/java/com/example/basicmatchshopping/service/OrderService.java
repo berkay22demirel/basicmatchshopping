@@ -6,7 +6,7 @@ import com.example.basicmatchshopping.dto.OrderDTO;
 
 public interface OrderService {
 
-	public int buy(OrderDTO orderDTO);
+	public OrderDTO buy(OrderDTO orderDTO);
 
 	public List<OrderDTO> getOrdersByUserId(int userId);
 

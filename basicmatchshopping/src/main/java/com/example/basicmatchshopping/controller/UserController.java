@@ -21,8 +21,8 @@ public class UserController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<Object> create(@RequestBody UserDTO user) throws Exception {
-		int id = userService.create(user);
-		return new ResponseEntity<>(id, HttpStatus.CREATED);
+		UserDTO userDTO = userService.create(user);
+		return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/get/{username}")

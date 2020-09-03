@@ -17,11 +17,12 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
 	private ShoppingCartService shoppingCartService;
 
 	@Override
-	public int add(ShoppingCartItemDTO shoppingCartItemDTO) {
+	public ShoppingCartItemDTO add(ShoppingCartItemDTO shoppingCartItemDTO) {
 		ShoppingCartItem shoppingCartItem = MapperUtil.convertToShoppingCartItem(shoppingCartItemDTO);
-		int id = shoppingCartItemRepository.save(shoppingCartItem).getId();
+		shoppingCartItemDTO = MapperUtil
+				.convertToShoppingCartItemDTO(shoppingCartItemRepository.save(shoppingCartItem));
 		shoppingCartService.recalculateTotalAmount(shoppingCartItem.getShoppingCart().getId());
-		return id;
+		return shoppingCartItemDTO;
 	}
 
 	@Override

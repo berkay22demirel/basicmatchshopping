@@ -68,6 +68,7 @@ public class MapperUtil {
 	public static ProductDTO convertToProductDTO(Product product) {
 		ProductDTO productDTO = modelMapper.map(product, ProductDTO.class);
 		productDTO.setCategoryDTO(convertToCategoryDTO(product.getCategory()));
+		productDTO.setSubProductDTOs(convertToSubProductDTOs(product.getSubProducts()));
 		return productDTO;
 	}
 
@@ -86,12 +87,11 @@ public class MapperUtil {
 
 	public static SubProductDTO convertToSubProductDTO(SubProduct subProduct) {
 		SubProductDTO subProductDTO = modelMapper.map(subProduct, SubProductDTO.class);
-		subProductDTO.setProductDTO(convertToProductDTO(subProduct.getProduct()));
 		return subProductDTO;
 	}
 
 	public static UserDTO convertToUserDTO(User user) {
-		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+		UserDTO userDTO = user != null ? modelMapper.map(user, UserDTO.class) : new UserDTO();
 		return userDTO;
 	}
 
@@ -120,6 +120,7 @@ public class MapperUtil {
 		for (Product product : products) {
 			ProductDTO productDTO = convertToProductDTO(product);
 			productDTO.setCategoryDTO(convertToCategoryDTO(product.getCategory()));
+			productDTO.setSubProductDTOs(convertToSubProductDTOs(product.getSubProducts()));
 			productDTOs.add(productDTO);
 		}
 		return productDTOs;
@@ -141,7 +142,11 @@ public class MapperUtil {
 		if (!CollectionUtils.isEmpty(shoppingCartItems)) {
 			for (ShoppingCartItem shoppingCartItem : shoppingCartItems) {
 				ShoppingCartItemDTO shoppingCartItemDTO = convertToShoppingCartItemDTO(shoppingCartItem);
-				shoppingCartItemDTO.setSubProductDTO(convertToSubProductDTO(shoppingCartItem.getSubProduct()));
+				SubProductDTO subProductDTO = modelMapper.map(shoppingCartItem.getSubProduct(), SubProductDTO.class);
+				ProductDTO productDTO = modelMapper.map(shoppingCartItem.getSubProduct().getProduct(),
+						ProductDTO.class);
+				subProductDTO.setProductDTO(productDTO);
+				shoppingCartItemDTO.setSubProductDTO(subProductDTO);
 				shoppingCartItemDTOs.add(shoppingCartItemDTO);
 			}
 		}
@@ -152,7 +157,6 @@ public class MapperUtil {
 		List<SubProductDTO> subProductDTOs = new ArrayList<>();
 		for (SubProduct subProduct : subProducts) {
 			SubProductDTO subProductDTO = convertToSubProductDTO(subProduct);
-			subProductDTO.setProductDTO(convertToProductDTO(subProduct.getProduct()));
 			subProductDTOs.add(subProductDTO);
 		}
 		return subProductDTOs;

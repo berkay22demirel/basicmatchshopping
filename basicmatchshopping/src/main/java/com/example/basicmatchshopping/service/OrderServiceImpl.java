@@ -19,10 +19,11 @@ public class OrderServiceImpl implements OrderService {
 	private ShoppingCartService shoppingCartService;
 
 	@Override
-	public int buy(OrderDTO orderDTO) {
+	public OrderDTO buy(OrderDTO orderDTO) {
 		Order order = MapperUtil.convertToOrder(orderDTO);
 		shoppingCartService.setPassiveToShoppingCart(orderDTO.getShoppingCartDTO().getId());
-		return orderRepository.save(order).getId();
+		orderDTO = MapperUtil.convertToOrderDTO(orderRepository.save(order));
+		return orderDTO;
 	}
 
 	@Override

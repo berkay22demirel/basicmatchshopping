@@ -21,8 +21,8 @@ public class OrderController {
 
 	@RequestMapping(value = "/buy", method = RequestMethod.POST)
 	public ResponseEntity<Object> buy(@RequestBody OrderDTO order) throws Exception {
-		int id = orderService.buy(order);
-		return new ResponseEntity<>(id, HttpStatus.CREATED);
+		OrderDTO orderDTO = orderService.buy(order);
+		return new ResponseEntity<>(orderDTO, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/getallbyuserid/{id}")

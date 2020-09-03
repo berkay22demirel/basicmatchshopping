@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -37,8 +37,8 @@ public class SubProduct {
 	@Column(name = "ID", nullable = false, updatable = false)
 	private int id;
 
-	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	@JoinColumn(name = "product_id", referencedColumnName = "ID", nullable = false)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 
 	@Enumerated(EnumType.STRING)
