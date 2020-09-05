@@ -60,4 +60,9 @@ public class SubProductServiceImpl implements SubProductService {
 		return subProducts.get(0);
 	}
 
+	@Override
+	public void deleteAllBySource(String source) {
+		subProductRepository.deleteAllBySource(source);
+	}
+
 }

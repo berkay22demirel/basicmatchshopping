@@ -1,6 +1,7 @@
 package com.example.basicmatchshopping.service;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,21 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductDTO> findProductsByCategoryId(int categoryId) {
-		return MapperUtil.convertToProductDTOs(productRepository.findProductsByCategoryId(categoryId));
+		List<Product> products = productRepository.findProductsByCategoryId(categoryId);
+		Iterator<Product> i = products.iterator();
+		while (i.hasNext()) {
+			Product product = i.next();
+
+			if (product.getSubProducts().size() < 2) {
+				i.remove();
+			}
+		}
+		return MapperUtil.convertToProductDTOs(products);
+	}
+
+	@Override
+	public List<Product> findAll() {
+		return (List<Product>) productRepository.findAll();
 	}
 
 }

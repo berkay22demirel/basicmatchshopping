@@ -16,6 +16,7 @@ import com.example.basicmatchshopping.dto.AuthRequest;
 import com.example.basicmatchshopping.dto.TokenDTO;
 import com.example.basicmatchshopping.service.AmazonService;
 import com.example.basicmatchshopping.service.JwtService;
+import com.example.basicmatchshopping.service.MorrisonsService;
 import com.example.basicmatchshopping.service.UserServiceImpl;
 
 @RestController
@@ -33,6 +34,9 @@ public class AuthController {
 
 	@Autowired
 	private AmazonService amazonService;
+
+	@Autowired
+	private MorrisonsService morrisonsService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<Object> creteToken(@RequestBody AuthRequest authRequest) throws Exception {
@@ -53,6 +57,12 @@ public class AuthController {
 	@RequestMapping(value = "/amazon", method = RequestMethod.GET)
 	public ResponseEntity<Object> amazon() throws Exception {
 		amazonService.fillProduct();
+		return new ResponseEntity<>("Successsfull", HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/morrisons", method = RequestMethod.GET)
+	public ResponseEntity<Object> morrisons() throws Exception {
+		morrisonsService.fillProduct();
 		return new ResponseEntity<>("Successsfull", HttpStatus.OK);
 	}
 

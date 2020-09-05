@@ -18,4 +18,6 @@ public interface ProductService {
 	public Product findByName(String name) throws NotFoundException;
 
 	public List<ProductDTO> findProductsByCategoryId(int categoryId);
+
+	public List<Product> findAll();
 }

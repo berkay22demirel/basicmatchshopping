@@ -23,4 +23,6 @@ public interface SubProductService {
 
 	public SubProduct findByProductId(int productId) throws NotFoundException;
 
+	public void deleteAllBySource(String source);
+
 }
